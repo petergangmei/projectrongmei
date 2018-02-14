@@ -38,12 +38,12 @@ $("#showme").keyup(function(){
     if(pattern.test(comment)){
     $('#cBtn').prop('disabled', true);
     // alert('empty');
-      $('#sub').html(' empty');
+      
 
     }else{
     $('#cBtn').prop('disabled', false);
       $('#sub').html('not empty');
-    // alert('not empty');
+    
     }
 
     };
