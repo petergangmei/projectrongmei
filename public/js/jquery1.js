@@ -4,43 +4,55 @@ $(document).ready(function(){
         trigger:'hover'
     });
 
+// black under line animation when focus in comment field
 	$("#showme").click(function(){
-
        $(".c_textarea").css("border-bottom", "2px solid black");
 	});
 	$("#showme").keydown(function(){
          $(".c_textarea").css("border-bottom", "2px solid black");
 	});
-
 	$("#showme").focusout(function(){
        $(".c_textarea").css("border-bottom", "1px solid silver");
 	});
+// black under line animation when focus in comment field ends here
 
-    $("#showme").keydown(function(){
+// show comment button logic
+$("#showme").keyup(function(){
         // alert('test alert');
-        $(".csshide").show();
-
     var comment = $("#showme").val();
     var comment_length = comment.length;
-	if(comment_length >= 5){
-		$('.csshide').prop('disabled', false);
-         $(".c_textarea").css("border-bottom", "2px solid black");
+    $('#sub').html(comment_length);
+         val_check();
+  
+    if(comment_length > 0){
+      $('.csshide').show(); 
+    }else{
+      $('.csshide').hide();
+    }
+    
+    // disabled or enable comment button accoring to value enter in commen field logic
+    function val_check(){
+      var comment = $('#showme').val();
+      var pattern = /^[ ]*$/;
 
+    if(pattern.test(comment)){
+    $('#cBtn').prop('disabled', true);
+    // alert('empty');
+      $('#sub').html(' empty');
 
-	}else{
-		$('.csshide').prop('disabled', true);
-		$('.csshide').hide();
-         $(".c_textarea").css("border-bottom", "2px solid black");
-	}
+    }else{
+    $('#cBtn').prop('disabled', false);
+      $('#sub').html('not empty');
+    // alert('not empty');
+    }
+
+    };
+
     });
+// show comment button logic ends here
 
-    $("#showme").focusout(function(){
-       $(".c_textarea").css("border-bottom", "1px solid silver");
-	});
 
-    $("#show").click(function(){
-        $("p").show();
-    });
+   
 
     //jquewry for comment post
     $('#cBtn').click(function(event) {
@@ -52,21 +64,25 @@ $(document).ready(function(){
 
 });
 
+
+
+
+// Registration form script
 $(document).ready(function(){
-// accout type switch
-// individual to community toggle
-$("#community").click(function(){
-  $('.individual_rcontent').fadeOut(function(){
-    $('.community_rcontent').fadeIn();
+  // accout type switch
+  // individual to community toggle
+  $("#community").click(function(){
+    $('.individual_rcontent').fadeOut(function(){
+      $('.community_rcontent').fadeIn();
+    });
+  });
+
+  // community to individual toggle
+  $("#individual").click(function(){
+    $('.community_rcontent').fadeOut(function(){
+      $('.individual_rcontent').fadeIn();
+    });
   });
 });
 
-// community to individual toggle
-$("#individual").click(function(){
-  $('.community_rcontent').fadeOut(function(){
-    $('.individual_rcontent').fadeIn();
-  });
-});
-
-
-});
+// Registration form script ends here.
